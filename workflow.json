@@ -1,0 +1,1587 @@
+{
+  "name": "Nutrition AI Assistant",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE",
+          "mode": "list",
+          "cachedResultName": "AI Nutrition Assistant",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 893739291,
+          "mode": "list",
+          "cachedResultName": "Weights",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit#gid=893739291"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        1920,
+        624
+      ],
+      "id": "04a64e98-8f5f-48e8-9965-4173aa5d55fd",
+      "name": "Weight Progress",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XiosU9RmdPuHBBy8",
+          "name": "Dev's"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE",
+          "mode": "list",
+          "cachedResultName": "AI Nutrition Assistant",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1622953382,
+          "mode": "list",
+          "cachedResultName": "Meals",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit#gid=1622953382"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        2080,
+        624
+      ],
+      "id": "b97094a5-2658-413a-a70a-150517b4044f",
+      "name": "Meal History",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XiosU9RmdPuHBBy8",
+          "name": "Dev's"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE",
+          "mode": "list",
+          "cachedResultName": "AI Nutrition Assistant",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Intro",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        2224,
+        624
+      ],
+      "id": "b75d7aa9-46b4-4348-91d3-9ecea7e9e57f",
+      "name": "Intro About Client",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XiosU9RmdPuHBBy8",
+          "name": "Dev's"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3af0daa0-795f-45e8-ae10-fca10950b855",
+              "name": "chatInput",
+              "type": "string",
+              "value": "={{ $json.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "641faa70-9ea0-4cd0-963d-291197d5c95f",
+      "name": "Set chatInput from Image",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1072,
+        688
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "operation": "information"
+      },
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        624,
+        688
+      ],
+      "id": "687cfc69-b8f2-4173-b529-a6d4904e7782",
+      "name": "Edit Image"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.photo[$json.message.photo.length - 1].file_id  }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        688
+      ],
+      "id": "eef9c87e-6fa4-4dc7-8564-8869f75b7b42",
+      "name": "Get a file",
+      "webhookId": "2896eae2-fb31-4ba6-a198-e9e54bcc87c9",
+      "credentials": {
+        "telegramApi": {
+          "id": "fbQKUET1Ivj7QHLp",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "text": "You are a meticulous nutrition analyst. \nAnalyze food photos, segment items, estimate portion sizes in grams using visual cues (plate, utensils, hand size) and packaging/labels if present.\nUse standard references (e.g., USDA) when needed. Be conservative; state assumptions and uncertainty.\nALWAYS return VALID JSON that matches the provided schema. No extra prose.",
+        "inputType": "base64",
+        "binaryPropertyName": "=data",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        848,
+        688
+      ],
+      "id": "d069ce70-2ff7-4187-add2-28eeb01427d8",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "YZhYGem1JKwl7FoZ",
+          "name": "OpenAi of Mykola Movchan (personal)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "75db72b5-3ede-4bd2-98c1-c259cd5e9f2c",
+                    "leftValue": "={{ $json.message.voice.file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Is Voice Message?"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "45dffe6b-3831-4c47-a8d3-5dbfc3e12a09",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Is Text Message?"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.photo[0].file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "bb10bad7-cb3c-46b4-b159-10416e161a56"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Is Image Message?"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        160,
+        272
+      ],
+      "id": "2306f0d0-2850-458d-941a-4b9fcbd3f613",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Meal Message').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "9253ca71-701e-4487-aa44-bc8fa1f69579",
+      "name": "Respond message",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        2304,
+        352
+      ],
+      "webhookId": "8e646f8a-1f21-4719-b5f2-0cc5fad144df",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "fbQKUET1Ivj7QHLp",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Personalize the response message\nYou can send the response of the Agent\nOr just be more polite! ",
+        "height": 320,
+        "color": 4
+      },
+      "id": "f9c89969-1c93-4b31-88d8-fc5d8d4d4f32",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2240,
+        192
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Analyze message and create a personalized assistance message to the user\n\n- Use Postress Chat History as reference and Google Sheet to retrieve current progress data.",
+        "height": 400,
+        "width": 460,
+        "color": 4
+      },
+      "id": "ddc52b54-f3df-4b8f-aa55-c660336fbd1c",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1712,
+        128
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## If it's an Audio file\nTRanscript it using openAI ",
+        "height": 260,
+        "width": 640,
+        "color": 4
+      },
+      "id": "eb52e745-b3cf-40d0-ad06-4ae4f22666ee",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        560,
+        -48
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Send a Telegram message\n1. Send message about a meal or ask a personalized piece of advice.\n \nYour input can be a written or a voice message.",
+        "height": 380,
+        "color": 4
+      },
+      "id": "bcbc6a89-4b7d-4888-b640-9e8fb9c53f9b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -240,
+        48
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3af0daa0-795f-45e8-ae10-fca10950b855",
+              "name": "chatInput",
+              "type": "string",
+              "value": "={{ $json.text }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5c8cdfa5-21d7-4d4f-a3d5-eddb335f05db",
+      "name": "Set chatInput from voice",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1072,
+        64
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3af0daa0-795f-45e8-ae10-fca10950b855",
+              "name": "chatInput",
+              "type": "string",
+              "value": "={{ $json.message.text }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c9bf6c7a-7d1c-442a-88ae-12dfaee2634c",
+      "name": "Set chatInput from message",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        832,
+        352
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "binaryPropertyName": "=data",
+        "options": {}
+      },
+      "id": "7dd324a3-6faa-4997-8da0-3da253b90829",
+      "name": "Transcribe Recording",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        848,
+        64
+      ],
+      "typeVersion": 1.6,
+      "credentials": {
+        "openAiApi": {
+          "id": "YZhYGem1JKwl7FoZ",
+          "name": "OpenAi of Mykola Movchan (personal)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}",
+        "additionalFields": {}
+      },
+      "id": "d27132de-3344-491b-8699-3023ae53c514",
+      "name": "Get Audio File",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        624,
+        64
+      ],
+      "webhookId": "36dfe00d-6f05-419a-a80a-f6c7321e9a7d",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "fbQKUET1Ivj7QHLp",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "cdbd0b9b-c59c-40f5-826f-e00b131e652c",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        1584,
+        624
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "YZhYGem1JKwl7FoZ",
+          "name": "OpenAi of Mykola Movchan (personal)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1472,
+        960
+      ],
+      "id": "28a11a1f-041a-46ec-a0f2-3fdd77d1b47f",
+      "name": "When chat message received",
+      "webhookId": "dfb8449c-19a0-4c9b-89d8-5453808d0615"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "d3ac8fe7-6a43-488c-8b4d-e44d6cb8a085",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        2704,
+        624
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "YZhYGem1JKwl7FoZ",
+          "name": "OpenAi of Mykola Movchan (personal)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=ВХІДНІ ДАНІ: {{ $('Chat Input').item.json.chatInput }}\n---\nДАНІ ПРО КОРИСТУВАЧА:\n- імʼя: {{ $json.client }}\n- ціль: {{ $json.goal }}\n- бажана вага: {{ $json.goal_weight }}\n- початкова вага: {{ $json['initial_weight (kg)'] }}\n- поточна вага: {{ $json['current_weight (kg)'] }}\n- ріст: {{ $json['height (sm)'] }}\n---\n\nІНСТРУКЦІЇ:\n- Дай відповідь українською, без структурованого JSON.\n- Якщо вхідні дані опис їжі - порахуй детально калорії та повідом юзера про калораж, білки жири - детально по кожному продукту, який був ідентифіковано. Додай емодзі тут до кожного пункту опису страв + підсумок калорій для наглядності та краси.\n- Якщо юзер питає «а що їсти ввечері / що змінити», порадь 2–3 простих дії.\n",
+        "options": {
+          "systemMessage": "=Ти — дружній український нутрі-коуч і практичний дієтолог. Відповідаєш коротко, по-людськи, інколи додаєш 1–2 доречні емодзі (не завжди, рандомно). Без JSON.\n\n🎯 Твої цілі:\n1) Зрозуміти запит: логування страви / питання про меню / питання про прогрес.\n2) Дати експертний коментар по страві: розпиши калорійність по кожному знайденомо продукту (якісно або за наданими цифрами), користь, ризики, чи підходить під ціль клієнта.\n\n📚 Джерела контексту:\n- Intro About Client: client, goal, initial_weight(kg), height(sm), можливий current_weight.\n- Meal History: date, meal, calories (історія прийомів).\n- Weight Progress: date, weight (динаміка ваги).\n- Дані з бази даних Postgress\n\n🧠 Як аналізувати страву:\n- Якщо є точні цифри (з вхідного JSON або історії) — використовуй їх.\n- Якщо цифр немає — не вигадуй! Оціни **щільність калорій** категорією: низька / середня / висока. Орієнтуйся на тип продуктів:\n  • Низька: нежирні білки, зелені овочі, ягоди, супи-овочі.  \n  • Середня: цільнозернові, бобові, більшість молочних, фрукти.  \n  • Висока: сири, горіхи/насіння, жирні соуси, випічка, фастфуд, смажене.\n- Додай корисні факти про продукт(и): можливі мікроелементи, клітковина, білок, тип жиру, глікемічний “характер”. Без точних чисел, якщо їх немає у контексті.\n- Якщо видно “сміттєві” патерни (часті булочки/солодке/алко/пізні калорії) — попередь мʼяко і запропонуй workable заміну.\n\n🎯 Адаптація під ціль клієнта:\n- Використовуй `goal` (наприклад: “скинути вагу”, “набір мʼязів”).\n- Дай 1–2 персональні коригування: зменшити енергощільний компонент, додати білок/овочі/воду, налаштувати час прийомів.\n\n🛠️ Правила роботи з інструментами:\n- Якщо у вхідному повідомленні прямо просять історію/тенденції — ЧИТАЙ Google Sheet(и).\n- Поверни ЛИШЕ потрібний діапазон (переважно останні 30 днів) і використовуй агрегати, якщо вони вже надані нодами воркфлоу.\n- Викликати інструмент максимум 1–2 рази на відповідь. Якщо тул недоступний — відповідай загально без вигаданих чисел.\n\n🗣️ Формат відповіді (коротко, без JSON):\n1) **Вердикт по страві/запиту** (1–2 речення, з оцінкою щільності калорій і користі).\n2) **Кількість калорій, білків, жирів і вуглеводів - покожному компоненту**.\n3) **Факти про продукт(и)** — 1–3 пункти (мікроелементи/клітковина/тип білка, без вигадки цифр).\n4) **Що зробити сьогодні** — 2–4 марковані, максимально практичні.\n5) Не вказуй, що ти зберіг чи збережеш дані, ти просто даєш відповідь в моменті. Уникай фраз типу \"Запис буде збережений\"\n\nЗавжди пиши українською.\n"
+        }
+      },
+      "id": "c8edf7c3-7754-4935-a4fe-dd3349bf0ae7",
+      "name": "Assist with Ingredients and nutrients",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        1792,
+        352
+      ],
+      "typeVersion": 1.8,
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=TASK:\nAnalyze the following message that may include the meal description and, then return ONLY the JSON matching the schema.\n\nAccurately calculate the calories of the meal based on the received info.\n\nIf the message from use does not reference to description of the meal but just referes to a question or advice - put boolean false to is_meal_record property. If refers to meal recording - put true.\n\nIf there are more than 1 food item discovered, make sure to add all food names to title and calculate the total calories number. For example, if the input says about eggs, coffee and cake, then add it all to name like \"Eggs, Coffee and Cake\".\n\nUSER INPUT: {{ $('Chat Input').item.json.chatInput }}\n\nSCHEMA:\n{\n  \"name\":  \"string\",\n  \"calories_kcal\": number,\n  \"is_meal_record\": true\n}\n\nReturn ONLY JSON.\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=You convert data to JSON. Your only job is to return a valid JSON object that exactly matches the schema below. Do not include any prose, code fences, comments, or extra fields.\n\nEstimation rules:\n- Identify each distinct food item (split combined meals; include likely sauces/oils as separate items when relevant).\n- Prefer exact values from packaging if `label_text` is present; otherwise estimate from standard references and typical serving sizes. Be conservative and realistic.\n- Calories must be non-negative integers.\n- `totals.calories_kcal` must equal the sum of all item calories.\n- If input is empty or unusable, return an empty `items` array and `totals.calories_kcal = 0`.\n\nOutput: ONLY the JSON object.\n"
+        }
+      },
+      "id": "f375b4c7-0fee-4c6f-a6ca-9d48a8d1b357",
+      "name": "Record Ingredients and nutrients",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        2720,
+        352
+      ],
+      "typeVersion": 1.8
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"name\": \"Chicken breast\",\n  \"calories_kcal\": 165,\n  \"is_meal_record\": true\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        2944,
+        624
+      ],
+      "id": "e37eb09a-1807-41d9-9a8e-7492f21296c0",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Meal Message').item.json.message.chat.id }}",
+        "text": "=✅ Новий запис у табличку:\n\n🍽️ Страва: {{ $('Record Ingredients and nutrients').item.json.output.name }}\n🔥 К-ть калорій: {{ $('Record Ingredients and nutrients').item.json.output.calories_kcal }} ккал\n📄 Таблиця: https://shorturl.at/Oz50D\n",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "3005ade4-54d0-46bb-80c9-fff75b333378",
+      "name": "Respond message1",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        3760,
+        352
+      ],
+      "webhookId": "8e646f8a-1f21-4719-b5f2-0cc5fad144df",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "fbQKUET1Ivj7QHLp",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "950bf721-d2c3-47b1-be60-3860251d0717",
+              "leftValue": "={{ $json.output.is_meal_record }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        3184,
+        352
+      ],
+      "id": "ec9ddfbd-c516-4e62-b97e-f2e178fe114e",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3af0daa0-795f-45e8-ae10-fca10950b855",
+              "name": "chatInput",
+              "type": "string",
+              "value": "={{ $json.chatInput }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "979916af-8f33-42f2-bc41-29d0ea1922bb",
+      "name": "Chat Input",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1392,
+        352
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE",
+          "mode": "list",
+          "cachedResultName": "AI Nutrition Assistant",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Intro",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1584,
+        352
+      ],
+      "id": "9971ab0c-1eb7-48f1-b1de-032878f7009b",
+      "name": "Get Intro",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XiosU9RmdPuHBBy8",
+          "name": "Dev's"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE",
+          "mode": "list",
+          "cachedResultName": "AI Nutrition Assistant",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1622953382,
+          "mode": "list",
+          "cachedResultName": "Meals",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit#gid=1622953382"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ new Date().toISOString().slice(0, 10) }}",
+            "meal": "={{ $json.output.name }}",
+            "calories": "={{ $json.output.calories_kcal }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "meal",
+              "displayName": "meal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "calories",
+              "displayName": "calories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        3472,
+        352
+      ],
+      "id": "b4a7b178-1544-41bd-a8ae-7979891cdf7c",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XiosU9RmdPuHBBy8",
+          "name": "Dev's"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Meal Message').item.json.message.chat.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1760,
+        624
+      ],
+      "id": "4f005119-19b1-4d8b-9658-5c6a7c11289a",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "iaGQssAfdMUVL0KE",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Send a Telegram message\n1. To your channel with the list of what you ate during your last meal. \nYour input can be a written or a voice message.",
+        "height": 380,
+        "color": 4
+      },
+      "id": "496d7563-fde7-4831-8e4d-921ba4ea3938",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -240,
+        1120
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "information"
+      },
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        304,
+        1312
+      ],
+      "id": "53c7578c-e914-48cd-9308-828615775e4c",
+      "name": "Edit Image1"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.photo[$json.message.photo.length - 1].file_id  }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        1312
+      ],
+      "id": "43d4cfd3-69c8-439d-b274-a1ae0548cc38",
+      "name": "Get a file1",
+      "webhookId": "2896eae2-fb31-4ba6-a198-e9e54bcc87c9",
+      "credentials": {
+        "telegramApi": {
+          "id": "K3pdwgjVJJjTluUr",
+          "name": "Telegram account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "text": "You are a precise weight reader.  \nAnalyze the image of a digital scale and extract only the weight value displayed. \n\nReturn only the number, formatted as an integer or decimal (e.g., 62, 62.4, 78). \n \nDo not include units, text, symbols, or comments. Output must be a single numeric value only.\n\nIf no number is defined, your response is only 0.\n",
+        "inputType": "base64",
+        "binaryPropertyName": "=data",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        528,
+        1312
+      ],
+      "id": "43f5453c-c79d-4b9d-bb51-033a1be83033",
+      "name": "Analyze image1",
+      "credentials": {
+        "openAiApi": {
+          "id": "YZhYGem1JKwl7FoZ",
+          "name": "OpenAi of Mykola Movchan (personal)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE",
+          "mode": "list",
+          "cachedResultName": "AI Nutrition Assistant",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 893739291,
+          "mode": "list",
+          "cachedResultName": "Weights",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit#gid=893739291"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "weight": "={{ $json.content }}",
+            "date": "={{ new Date().toISOString().slice(0, 10) }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "weight",
+              "displayName": "weight",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        784,
+        1312
+      ],
+      "id": "d3636ae9-d914-478b-a551-4ed39ef31edb",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XiosU9RmdPuHBBy8",
+          "name": "Dev's"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE",
+          "mode": "list",
+          "cachedResultName": "AI Nutrition Assistant",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Intro",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jZTER5dUyFgCtbYh9YcjkLVliVmq24Wz47biPBOUjrE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "current_weight (kg)": "={{ $json.weight }}",
+            "client": "={{ $('Telegram Weight Message').item.json.message.forward_origin.sender_user.username }}"
+          },
+          "matchingColumns": [
+            "client"
+          ],
+          "schema": [
+            {
+              "id": "client",
+              "displayName": "client",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "goal",
+              "displayName": "goal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "goal_weight",
+              "displayName": "goal_weight",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "initial_weight (kg)",
+              "displayName": "initial_weight (kg)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_weight (kg)",
+              "displayName": "current_weight (kg)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "height (sm)",
+              "displayName": "height (sm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1008,
+        1312
+      ],
+      "id": "940df329-ee8c-471e-8cdd-521d02bd8b39",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XiosU9RmdPuHBBy8",
+          "name": "Dev's"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Weight Message').item.json.message.chat.id }}",
+        "text": "=✅ Нову вагу записано\n📄 Таблиця: https://shorturl.at/Oz50D\n",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "1b847e09-83ea-495d-b64b-9f5f4301b2ec",
+      "name": "Respond message2",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        1232,
+        1312
+      ],
+      "webhookId": "8e646f8a-1f21-4719-b5f2-0cc5fad144df",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "K3pdwgjVJJjTluUr",
+          "name": "Telegram account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "channel_post"
+        ],
+        "additionalFields": {}
+      },
+      "id": "04737469-1ab2-4ab3-b122-ebc68f9890f1",
+      "name": "Telegram Weight Message",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "position": [
+        -176,
+        1312
+      ],
+      "webhookId": "34756bf0-27bd-4384-9e46-549473c307a0",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "K3pdwgjVJJjTluUr",
+          "name": "Telegram account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "channel_post"
+        ],
+        "additionalFields": {}
+      },
+      "id": "dc0fc5a1-34a8-46a0-b11d-13a2f34e6d53",
+      "name": "Telegram Meal Message",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "position": [
+        -176,
+        272
+      ],
+      "webhookId": "34756bf0-27bd-4384-9e46-549473c307a0",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "fbQKUET1Ivj7QHLp",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -208,
+        1840
+      ],
+      "id": "cd9531e9-f51e-4d7b-b21d-3424bc1844b7",
+      "name": "Schedule Trigger",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "chatId": "282291361",
+        "text": "=☝🏻 Не забудь закинути свою актуальну вагу",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "cd29074c-7c8d-4cc5-857b-3221180a0663",
+      "name": "Respond message3",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        48,
+        1840
+      ],
+      "webhookId": "8e646f8a-1f21-4719-b5f2-0cc5fad144df",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "K3pdwgjVJJjTluUr",
+          "name": "Telegram account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## If it's an Image file\nAnalyze it using openAI ",
+        "height": 320,
+        "width": 920,
+        "color": 4
+      },
+      "id": "8faa4e1b-243d-4f86-ad8f-6381662848c3",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        368,
+        592
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## If it's a Text message",
+        "height": 240,
+        "width": 480,
+        "color": 4
+      },
+      "id": "bb86756b-59b4-4ac4-9e50-98a6d356967f",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        592,
+        288
+      ],
+      "typeVersion": 1
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Edit Image": {
+      "main": [
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Edit Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "Set chatInput from Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Get Audio File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set chatInput from message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Weight Progress": {
+      "ai_tool": [
+        [
+          {
+            "node": "Assist with Ingredients and nutrients",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Meal History": {
+      "ai_tool": [
+        [
+          {
+            "node": "Assist with Ingredients and nutrients",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intro About Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "Assist with Ingredients and nutrients",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set chatInput from Image": {
+      "main": [
+        [
+          {
+            "node": "Chat Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set chatInput from voice": {
+      "main": [
+        [
+          {
+            "node": "Chat Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set chatInput from message": {
+      "main": [
+        [
+          {
+            "node": "Chat Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe Recording": {
+      "main": [
+        [
+          {
+            "node": "Set chatInput from voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Audio File": {
+      "main": [
+        [
+          {
+            "node": "Transcribe Recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Assist with Ingredients and nutrients",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        []
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Record Ingredients and nutrients",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Assist with Ingredients and nutrients": {
+      "main": [
+        [
+          {
+            "node": "Respond message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Record Ingredients and nutrients": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Record Ingredients and nutrients",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond message": {
+      "main": [
+        [
+          {
+            "node": "Record Ingredients and nutrients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Input": {
+      "main": [
+        [
+          {
+            "node": "Get Intro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Intro": {
+      "main": [
+        [
+          {
+            "node": "Assist with Ingredients and nutrients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Respond message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Assist with Ingredients and nutrients",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Image1": {
+      "main": [
+        [
+          {
+            "node": "Analyze image1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file1": {
+      "main": [
+        [
+          {
+            "node": "Edit Image1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Respond message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Weight Message": {
+      "main": [
+        [
+          {
+            "node": "Get a file1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Meal Message": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Respond message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond message3": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3b5c1e7a-a751-4e63-a913-a89ddada5562",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8a93666b50d397f260f4c3e819c70233c8f3070d6006c9106ca2991dc5a93b3a"
+  },
+  "id": "G5Eke8qS27GwCQtT",
+  "tags": [
+    {
+      "createdAt": "2025-08-11T06:25:27.679Z",
+      "updatedAt": "2025-08-11T06:25:27.679Z",
+      "id": "89nrhWWWRzDmAyfz",
+      "name": "personal"
+    },
+    {
+      "createdAt": "2025-08-13T15:35:04.820Z",
+      "updatedAt": "2025-08-13T15:35:04.820Z",
+      "id": "NJywwlw0rwRr56Se",
+      "name": "friend needs"
+    }
+  ]
+}
